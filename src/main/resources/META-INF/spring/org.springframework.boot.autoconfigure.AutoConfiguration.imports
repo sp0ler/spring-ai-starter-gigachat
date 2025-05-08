@@ -1,0 +1,4 @@
+ru.deevdenis.spring_ai_starter_gigachat.configuration.AppAutoConfiguration
+ru.deevdenis.spring_ai_starter_gigachat.configuration.CacheAutoConfiguration
+ru.deevdenis.spring_ai_starter_gigachat.api.GigaChatServiceImpl
+ru.deevdenis.spring_ai_starter_gigachat.api.GigaChatClient

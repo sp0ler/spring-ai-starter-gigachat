@@ -1,0 +1,26 @@
+### Проверка обработки ссобщений с помощью встроенных функций.
+POST http://localhost:8080/chat
+Content-Type: application/json
+
+{
+  "message": "Какое сейчас время в Красноярске?",
+  "model": "GigaChat"
+}
+
+### Проверка обработки ссобщений с помощью встроенных функций.
+POST http://localhost:8080/chat
+Content-Type: application/json
+
+{
+"message": "Какое сейчас время в Новосибирске?",
+"model": "GigaChat"
+}
+
+### Проверка обработки ссобщений с помощью встроенных функций.
+POST http://localhost:8080/chat
+Content-Type: application/json
+
+{
+  "message": "Сколько лет Гагарину Юрию Алексекевичу в текущем году?",
+  "model": "GigaChat"
+}

@@ -1,0 +1,88 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: "API"
+
+servers:
+  - url: "http://localhost:8080"
+
+paths:
+  /chat/file:
+    post:
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UploadChatRequest"
+        required: true
+      responses:
+        200:
+          description: Ответ на запрос
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadChatResponse"
+  /chat:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        200:
+          description: Ответ на запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+
+components:
+  schemas:
+    UploadChatRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+        filename:
+          type: string
+        mimeType:
+          type: string
+        userMessage:
+          type: string
+        systemMessage:
+          type: string
+        model:
+          type: string
+      required:
+        - file
+        - filename
+        - mimetype
+        - userMessage
+        - model
+    UploadChatResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/Message'
+    ChatRequest:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/Message'
+        model:
+          type: string
+      required:
+        - message
+        - model
+    ChatResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/Message'
+      required:
+        - message
+    Message:
+      type: string

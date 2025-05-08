@@ -1,0 +1,66 @@
+### Проверка мультимодальности, пример №1
+POST http://localhost:8080/chat/file
+Content-Type: multipart/form-data; boundary=AppBoundary
+
+--AppBoundary
+Content-Disposition: form-data; name="file"; filename="file.jpg"
+Content-Type: text/plain
+
+< ./attachement/ДУЛ_РФ.jpg
+
+--AppBoundary
+Content-Disposition: form-data; name="filename"
+Content-Type: text/plain
+
+passport_1.jpg
+
+--AppBoundary
+Content-Disposition: form-data; name="userMessage"
+Content-Type: text/plain
+
+Являтся ли эта фотография паспортом Российской Федерации?
+
+--AppBoundary
+Content-Disposition: form-data; name="mimeType"
+Content-Type: text/plain
+
+image/jpeg
+
+--AppBoundary
+Content-Disposition: form-data; name="model"
+Content-Type: text/plain
+
+GigaChat-2-Max
+### Проверка мультимодальности, пример №2
+POST http://localhost:8080/chat/file
+Content-Type: multipart/form-data; boundary=AppBoundary
+
+--AppBoundary
+Content-Disposition: form-data; name="file"; filename="file.jpg"
+Content-Type: text/plain
+
+< ./attachement/ДУЛ_Узбекистан.jpg.jpg
+
+--AppBoundary
+Content-Disposition: form-data; name="filename"
+Content-Type: text/plain
+
+passport_1.jpg
+
+--AppBoundary
+Content-Disposition: form-data; name="userMessage"
+Content-Type: text/plain
+
+Являтся ли эта фотография паспортом Российской Федерации?
+
+--AppBoundary
+Content-Disposition: form-data; name="mimeType"
+Content-Type: text/plain
+
+image/jpeg
+
+--AppBoundary
+Content-Disposition: form-data; name="model"
+Content-Type: text/plain
+
+GigaChat-2-Max
