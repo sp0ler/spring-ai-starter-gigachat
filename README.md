@@ -24,5 +24,5 @@
 
 ### Примеры использования
 
-* [Примеры]()
+* [Примеры](https://github.com/sp0ler/spring-ai-starter-gigachat/tree/master/example/request-example)
 
