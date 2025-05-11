@@ -33,7 +33,7 @@ public class MessageEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    protected UUID id;
+    private UUID id;
 
     @Column(name = "message_type")
     @Enumerated(EnumType.STRING)

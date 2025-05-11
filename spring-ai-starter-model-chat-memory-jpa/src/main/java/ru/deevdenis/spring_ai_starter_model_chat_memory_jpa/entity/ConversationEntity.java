@@ -32,7 +32,7 @@ public class ConversationEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    protected UUID id;
+    private UUID id;
 
     @Column(name = "conversation_id", unique = true, nullable = false)
     private UUID conversationId;
