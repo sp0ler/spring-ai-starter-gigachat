@@ -3,12 +3,14 @@ package ru.deevdenis.spring_ai_starter_model_chat_memory_jpa.entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -16,30 +18,33 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.ai.chat.messages.MessageType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Setter
 @Getter
 @Entity
-@Table(name = "conversation")
-public class ConversationEntity implements Serializable {
+@Table(name = "message")
+public class MessageEntity implements Serializable {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
     protected UUID id;
 
-    @Column(name = "conversation_id", unique = true, nullable = false)
-    private UUID conversationId;
+    @Column(name = "message_type")
+    @Enumerated(EnumType.STRING)
+    private MessageType messageType;
 
-    @OrderBy("createdOn")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "conversation", orphanRemoval = true)
-    private List<MessageEntity> messages = new ArrayList<>();
+    @Column(name = "content")
+    private String content;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "conversation_id")
+    private ConversationEntity conversation;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_on")
@@ -52,4 +57,5 @@ public class ConversationEntity implements Serializable {
     void prePersist() {
         createdOn = LocalDateTime.now();
     }
+
 }

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  ru.deevdenis.spring_ai_starter_model_chat_memory_jpa.SpringAiStarterModelChatMemoryJpaApplication

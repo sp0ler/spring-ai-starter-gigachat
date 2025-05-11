@@ -74,6 +74,9 @@ components:
           $ref: '#/components/schemas/Message'
         model:
           type: string
+        conversationId:
+          type: string
+          format: uuid
       required:
         - message
         - model

@@ -25,7 +25,14 @@ dependencies {
     // spring-ai
     implementation("org.springframework.ai:spring-ai-core:1.0.0-M6")
     implementation("org.springframework.ai:spring-ai-spring-boot-autoconfigure:1.0.0-M6")
+//    implementation("org.springframework.ai:spring-ai-starter-model-chat-memory-jdbc:1.0.0-M8")
+
+    // my starters
     implementation("ru.deevdenis:spring-ai-starter-gigachat:0.0.1")
+    implementation("ru.deevdenis:spring-ai-starter-model-chat-memory-jpa:0.0.1")
+
+    implementation("org.postgresql:postgresql:42.7.5")
+    implementation("org.liquibase:liquibase-core")
 
     // openapi
     implementation("org.openapitools:openapi-generator-gradle-plugin:7.11.0")
@@ -33,7 +40,7 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api:1.3.2")
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
 
-
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.4.5")
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

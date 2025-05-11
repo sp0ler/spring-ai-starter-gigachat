@@ -1,0 +1,4 @@
+ru.deevdenis.spring_ai_starter_model_chat_memory_jpa.mapper.MessageMapper
+ru.deevdenis.spring_ai_starter_model_chat_memory_jpa.repository.ConversationRepository
+ru.deevdenis.spring_ai_starter_model_chat_memory_jpa.repository.MessageRepository
+ru.deevdenis.spring_ai_starter_model_chat_memory_jpa.service.ChatMemoryService

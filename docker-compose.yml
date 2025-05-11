@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    postgres:
+        image: postgres
+        environment:
+            POSTGRES_USER: denis
+            POSTGRES_PASSWORD: password
+            PGDATA: /data/postgres
+            POSTGRES_DB: postgres
+        volumes:
+            - postgres:/data/postgres
+        ports:
+            - "5432:5432"
+        restart: on-failure
+        deploy:
+            resources:
+                limits:
+                  cpus: '3'
+                  memory: 1Gb
+        networks:
+            monitoring:
+                aliases:
+                    - postgres
+
+networks:
+    monitoring:
+volumes:
+    postgres:

@@ -1,0 +1,110 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Deev Denis (https://t.me/yyddd1)
+      comment: Создание таблицы для хранения индефикатора чата
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: conversation
+      changes:
+        - createTable:
+            tableName: conversation
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_conversation_id
+                    nullable: false
+                    unique: true
+              - column:
+                  name: conversation_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: created_on
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+      rollback:
+        - dropTable:
+            tableName: conversation
+  - changeSet:
+      id: 2
+      author: Deev Denis (https://t.me/yyddd1)
+      comment: Создание таблицы для хранения сообщений
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: message
+      changes:
+        - createTable:
+            tableName: message
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_message_id
+                    nullable: false
+                    unique: true
+              - column:
+                  name: message_type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: text
+                  defaultValue: ''
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_on
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: conversation_id
+                  type: uuid
+                  constraints:
+                    foreignKeyName: fk_message_conversation_id
+                    references: conversation(id)
+      rollback:
+        - dropTable:
+            tableName: message
+  - changeSet:
+      id: 3
+      author: Deev Denis (https://t.me/yyddd1)
+      comment: Создание уникального индекса для поля conversation_id
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            indexExists:
+              indexName: idx_conversation_conversation_id
+      changes:
+        - createIndex:
+            tableName: conversation
+            columns:
+              - column:
+                  name: conversation_id
+            indexName: idx_conversation_conversation_id
+      rollback:
+        - dropIndex:
+            tableName: conversation
+            indexName: idx_conversation_conversation_id
